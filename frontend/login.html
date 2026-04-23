@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login â€” Rohini Foods India</title>
+  <meta name="description" content="Login to Rohini Foods India to manage your orders and account details." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">R</span>
+        <span class="brand-name"><span>Rohini Foods</span><span>India</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="active">Login</a></li>
+        <li><a href="cart.html" class="nav-cta">Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container login-layout">
+      <div class="login-info reveal">
+        <span class="eyebrow">Account Access</span>
+        <h1>Sign in to <em>your account.</em></h1>
+        <p>Use your email and password to view order history and faster checkout in upcoming updates.</p>
+
+        <div class="login-demo-box">
+          <h3>Demo Login Info</h3>
+          <p><strong>Email:</strong> anuragjadhav684@gmail.com</p>
+          <p><strong>Password:</strong> Rohini@123</p>
+          <p class="login-note">Use this admin login to access product and order management.</p>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">Email address</label>
+            <input type="email" id="loginEmail" name="email" required placeholder="you@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" required placeholder="Enter your password" />
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            Sign In
+          </button>
+          <div id="loginMsg" class="form-msg"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Rohini Foods India</h3>
+          <p>Small-batch, handcrafted Indian pickles and homemade foods â€” made with the same care as a home kitchen, since day one.</p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/rohinifoodsindia" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg></a>
+            <a href="https://wa.me/919970545064" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.52 3.449C18.24 1.165 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a11.882 11.882 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896a11.821 11.821 0 0 0-3.48-8.45Zm-8.477 18.3h-.004a9.86 9.86 0 0 1-5.031-1.378l-.361-.214-3.741.979.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.251c.002-5.45 4.443-9.885 9.888-9.885a9.82 9.82 0 0 1 6.984 2.896 9.821 9.821 0 0 1 2.891 6.994c-.002 5.45-4.443 9.881-9.879 9.881Z"/></svg></a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.361H7.332v3.209h2.753v8.196h3.312Z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Shop</h4><ul><li><a href="products.html">All Products</a></li><li><a href="products.html">Pickles</a></li><li><a href="products.html">Homemade</a></li><li><a href="products.html">Bestsellers</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">Bulk Orders</a></li><li><a href="#">FAQs</a></li></ul></div>
+        <div class="footer-col"><h4>Get in touch</h4><ul><li><a href="mailto:anuragjadhav684@gmail.com">anuragjadhav684@gmail.com</a></li><li><a href="tel:+919970545064">+91 99705 45064</a></li><li>Mon - Sat, 9am - 7pm</li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>Â© 2026 Rohini Foods India. All rights reserved.</span>
+        <span>Made with love & mustard oil</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Rohini Foods India</title>
+  <meta name="description" content="Admin panel for managing products and customer orders." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">R</span>
+        <span class="brand-name"><span>Rohini Foods</span><span>India</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="admin.html" class="active">Admin</a></li>
+        <li><a href="cart.html" class="nav-cta">Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section admin-page">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Control Center</span>
+        <h2>Admin <em>Panel</em></h2>
+        <p>Manage all products and monitor incoming customer orders.</p>
+      </div>
+
+      <div id="adminMsg" class="form-msg"></div>
+
+      <div class="admin-grid">
+        <div class="admin-card reveal">
+          <h3>Add / Update Product</h3>
+          <form id="productForm">
+            <input type="hidden" id="productId" />
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input id="productName" required />
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Price (INR)</label>
+              <input id="productPrice" type="number" min="0" step="0.01" required />
+            </div>
+            <div class="form-group">
+              <label for="productCategory">Category</label>
+              <input id="productCategory" placeholder="Pickles / Homemade" />
+            </div>
+            <div class="form-group">
+              <label for="productImage">Image URL / Path</label>
+              <input id="productImage" placeholder="product.heic" />
+            </div>
+            <div class="form-group">
+              <label for="productDescription">Description</label>
+              <textarea id="productDescription" required></textarea>
+            </div>
+            <div class="admin-actions">
+              <button type="submit" class="btn btn-primary">Save Product</button>
+              <button type="button" id="resetProductForm" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="admin-card reveal">
+          <div class="admin-card-head">
+            <h3>Products</h3>
+            <button class="btn btn-secondary" id="refreshProducts">Refresh</button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table" id="productsTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card reveal" style="margin-top: 24px;">
+        <div class="admin-card-head">
+          <h3>Orders</h3>
+          <button class="btn btn-secondary" id="refreshOrders">Refresh</button>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table" id="ordersTable">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

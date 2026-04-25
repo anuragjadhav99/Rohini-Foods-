@@ -55,8 +55,14 @@
               <input id="productCategory" placeholder="Pickles / Homemade" />
             </div>
             <div class="form-group">
-              <label for="productImage">Image URL / Path</label>
-              <input id="productImage" placeholder="product.heic" />
+              <label for="productImage">Image URL / Path <span class="form-note">(optional)</span></label>
+              <input id="productImage" placeholder="Optional: leave blank to upload a file" />
+            </div>
+            <div class="form-group">
+              <label for="productPhoto">Upload Photo</label>
+              <input id="productPhoto" type="file" accept="image/*" />
+              <p class="form-help">Choose an image file to upload directly; this is the preferred option.</p>
+              <div id="productPhotoPreview" class="image-preview">No photo selected yet.</div>
             </div>
             <div class="form-group">
               <label for="productDescription">Description</label>

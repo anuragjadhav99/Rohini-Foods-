@@ -8,6 +8,8 @@ const productForm = document.getElementById('productForm');
 const productMsg = document.getElementById('adminMsg');
 const productsTableBody = document.querySelector('#productsTable tbody');
 const ordersTableBody = document.querySelector('#ordersTable tbody');
+const productPhotoInput = document.getElementById('productPhoto');
+const productPhotoPreview = document.getElementById('productPhotoPreview');
 
 let products = [];
 let orders = [];
@@ -67,16 +69,60 @@ function fillProductForm(product) {
   document.getElementById('productCategory').value = product.category || '';
   document.getElementById('productImage').value = product.image_url || '';
   document.getElementById('productDescription').value = product.description || '';
+
+  if (productPhotoInput) {
+    productPhotoInput.value = '';
+  }
+
+  if (product.image_url && productPhotoPreview) {
+    productPhotoPreview.innerHTML = `<img src="${product.image_url}" alt="Selected product preview" />`;
+  }
 }
 
 function resetProductForm() {
   productForm.reset();
   document.getElementById('productId').value = '';
+  if (productPhotoPreview) {
+    productPhotoPreview.textContent = 'No photo selected yet.';
+  }
+}
+
+function previewProductPhoto(file) {
+  if (!file || !productPhotoPreview) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    productPhotoPreview.innerHTML = `<img src="${reader.result}" alt="Selected product preview" />`;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Upload the selected image file to the backend and return its reachable URL.
+async function uploadProductPhoto(file) {
+  if (!file) return null;
+  const formData = new FormData();
+  formData.append('photo', file);
+
+  const res = await fetch(`${API_BASE}/uploads`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  const contentType = res.headers.get('content-type');
+  let json;
+  try {
+    json = await res.json();
+  } catch (err) {
+    throw new Error(`Upload failed: Server returned ${contentType} instead of JSON. Status: ${res.status}`);
+  }
+
+  if (!res.ok || !json.success) throw new Error(json.error || 'Photo upload failed');
+  return json.data?.image_url || null;
 }
 
 async function upsertProduct(e) {
   e.preventDefault();
   const id = document.getElementById('productId').value;
+  const photoFile = productPhotoInput?.files?.[0] || null;
   const payload = {
     name: document.getElementById('productName').value.trim(),
     price: Number(document.getElementById('productPrice').value),
@@ -84,6 +130,16 @@ async function upsertProduct(e) {
     image_url: document.getElementById('productImage').value.trim(),
     description: document.getElementById('productDescription').value.trim(),
   };
+
+  if (photoFile) {
+    try {
+      const uploadedUrl = await uploadProductPhoto(photoFile);
+      if (uploadedUrl) payload.image_url = uploadedUrl;
+    } catch (err) {
+      showMsg(`Upload error: ${err.message}`, 'error');
+      return; // Don't proceed with product save if upload fails
+    }
+  }
 
   const isUpdate = Boolean(id);
   const url = isUpdate ? `${API_BASE}/products/${id}` : `${API_BASE}/products`;
@@ -189,6 +245,12 @@ function attachEvents() {
   });
 
   document.getElementById('resetProductForm')?.addEventListener('click', resetProductForm);
+  productPhotoInput?.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      previewProductPhoto(file);
+    }
+  });
   document.getElementById('refreshProducts')?.addEventListener('click', () => fetchProducts().catch((err) => showMsg(err.message, 'error')));
   document.getElementById('refreshOrders')?.addEventListener('click', () => fetchOrders().catch((err) => showMsg(err.message, 'error')));
 

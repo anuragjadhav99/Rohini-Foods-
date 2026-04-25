@@ -109,3 +109,24 @@ applyBrandLogo();
 updateGlobalCartCount();
 updateAuthNavLabel();
 window.addEventListener('rf-auth-changed', updateAuthNavLabel);
+
+// ---------- Home page hero typing animation ----------
+function initHeroTyping() {
+  const typedTextEl = document.querySelector('.typed-text');
+  const target = 'Life';
+  if (!typedTextEl) return;
+
+  let idx = 0;
+  const typeSpeed = 120;
+  const write = () => {
+    typedTextEl.textContent = target.slice(0, idx);
+    if (idx < target.length) {
+      idx += 1;
+      window.setTimeout(write, typeSpeed);
+    }
+  };
+
+  window.setTimeout(write, 500);
+}
+
+initHeroTyping();
